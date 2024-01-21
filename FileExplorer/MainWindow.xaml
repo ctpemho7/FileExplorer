@@ -1,0 +1,37 @@
+﻿<Window x:Class="FileExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="FileFolder Explorer" Height="450" Width="700" MinHeight="450" MinWidth="700">
+    <Grid>
+
+        <GroupBox Header="Выбрать тип отображения" Padding="5" Margin="15,50,452,318" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <StackPanel Orientation="Horizontal" Height="18" VerticalAlignment="Bottom">
+                <RadioButton x:Name="RadioButtonFiles" IsChecked="True" Margin="3">Файлы</RadioButton>
+                <RadioButton x:Name="RadioButtonFolders" Margin="3">Папки</RadioButton>
+
+            </StackPanel>
+        </GroupBox>
+
+        <ListView x:Name="ListView" Margin="10,115,179,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="Текущий путь:" Margin="246,12,202,379" />
+        <Label x:Name="LabelPath" Content="Путь не выбран!" Margin="246,40,0,317" Width="400" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+        <Button x:Name="ButtonChoose" Margin="10,10,0,0" Content="Выбрать путь до файлов/папок" Click="ButtonChoose_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" MinWidth="230" MinHeight="35"/>
+        <Button x:Name="ButttonDelete" Margin="531,201,10,197" Content="Удалить" IsEnabled="False" Width="150" Height="20" HorizontalAlignment="Right" Click="ButttonDelete_Click" />
+        <Button x:Name="ButtonRename" Margin="531,234,10,164" Content="Переименовать" IsEnabled="False" Width="150" Height="20" HorizontalAlignment="Right" Click="ButtonRename_Click" />
+        <Button x:Name="ButtonRefresh" Margin="531,115,10,283" Content="Обновить" IsEnabled="False" Click="ButtonRefresh_Click" Width="150" Height="20" HorizontalAlignment="Right"/>
+        <Button x:Name="ButtonMove" Margin="531,167,10,231" Content="Переместить" IsEnabled="False" Width="150" Height="20" HorizontalAlignment="Right" Click="ButtonMove_Click"  />
+        <TextBox x:Name="TextBoxNewName" Height="43" Margin="0,288,10,88" TextWrapping="Wrap" Width="150" HorizontalAlignment="Right" Visibility="Hidden"/>
+        <Button x:Name="ButtonApplyNewName" Margin="0,336,10,63" Content="Изменить имя" Width="150" Height="20" HorizontalAlignment="Right" Visibility="Hidden" Click="ButtonApplyNewName_Click" />
+    </Grid>
+</Window>
