@@ -58,21 +58,23 @@ namespace FileExplorer
         private void ButtonChoose_Click(object sender, RoutedEventArgs e)
         {
             LabelPathText = ChooseFilePathDialogResut();
-            ListView.ItemsSource = InitializeData(DisplayMode, LabelPathText);
+            InitFileSystemInfo(LabelPathText);
+            ListView.ItemsSource = InitializeData(DisplayMode);
             ListView.View = CreateColumns(DisplayMode, LabelPathText);
         }
 
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            ListView.ItemsSource = InitializeData(DisplayMode, LabelPathText);
+            ListView.ItemsSource = InitializeData(DisplayMode);
             ListView.View = CreateColumns(DisplayMode, LabelPathText);
             OffOnButtons(false);
         }
 
         private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            OffOnButtons(true);
+            if (ListView.SelectedItems.Count != 0)
+                OffOnButtons(true);
         }
 
 

@@ -18,7 +18,7 @@ namespace FileExplorer
         private const string OK_RESULT = "OK";
 
         public static ObservableCollection<BaseModel> Items { get; set; }
-
+        private static FileSystemInfo[] FileSystemInfos;
 
         public static string ChooseFilePathDialogResut()
         {
@@ -31,28 +31,33 @@ namespace FileExplorer
             return PATH_NOT_CHOSEN;
         }
 
-
-        public static ObservableCollection<BaseModel> InitializeData(DisplayMode displayMode, string path)
+        //init data with all files and folders
+        public static void InitFileSystemInfo(string path)
         {
-            Items = new ObservableCollection<BaseModel>();
-
             if (path == PATH_NOT_CHOSEN)
-                return null;
+                return;
 
             DirectoryInfo di = new DirectoryInfo(path);
+            FileSystemInfos = di.GetFileSystemInfos();
+        }
+
+
+        public static ObservableCollection<BaseModel> InitializeData(DisplayMode displayMode)
+        {
+            Items = new ObservableCollection<BaseModel>();
 
             switch (displayMode)
             {
                 case DisplayMode.Files:
                     {
-                        foreach (var file in di.GetFiles())
+                        foreach (FileInfo file in FileSystemInfos.Where(i => i.Attributes != FileAttributes.Directory))
                             Items.Add(new FileModel { Name = file.Name, Extension = file.Extension, FileSize = HumanReadableFileSize(file.Length), CreationDate = file.CreationTime });
                         break;
                     }
 
                 default:
                     {
-                        foreach (var folder in di.GetDirectories())
+                        foreach (FileInfo folder in FileSystemInfos.Where(i => i.Attributes == FileAttributes.Directory))
                             Items.Add(new FolderModel { Name = folder.Name, LastChanged = folder.LastWriteTime });
                         break;
                     }
