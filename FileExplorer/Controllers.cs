@@ -44,6 +44,10 @@ namespace FileExplorer
 
         public static ObservableCollection<BaseModel> InitializeData(DisplayMode displayMode)
         {
+            //путь всё ещё не выбран -> не создан новый экземпляр класса
+            if (FileSystemInfos is null)
+                return null;
+
             Items = new ObservableCollection<BaseModel>();
 
             switch (displayMode)
@@ -57,7 +61,7 @@ namespace FileExplorer
 
                 default:
                     {
-                        foreach (FileInfo folder in FileSystemInfos.Where(i => i.Attributes == FileAttributes.Directory))
+                        foreach (DirectoryInfo folder in FileSystemInfos.Where(i => i.Attributes == FileAttributes.Directory))
                             Items.Add(new FolderModel { Name = folder.Name, LastChanged = folder.LastWriteTime });
                         break;
                     }

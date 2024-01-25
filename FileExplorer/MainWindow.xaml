@@ -4,18 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="FileFolder Explorer" Height="450" Width="700" MinHeight="450" MinWidth="700">
+        Title="FileFolder Explorer" Height="500" Width="750" MinHeight="500" MinWidth="750">
     <Grid>
 
         <GroupBox Header="Выбрать тип отображения" Padding="5" Margin="15,50,452,318" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <StackPanel Orientation="Horizontal" Height="18" VerticalAlignment="Bottom">
-                <RadioButton x:Name="RadioButtonFiles" IsChecked="True" Margin="3">Файлы</RadioButton>
-                <RadioButton x:Name="RadioButtonFolders" Margin="3">Папки</RadioButton>
+                <RadioButton x:Name="RadioButtonFiles" IsChecked="True" Margin="3" Checked="RadioButton_Checked">Файлы</RadioButton>
+                <RadioButton x:Name="RadioButtonFolders" Margin="3" Checked="RadioButton_Checked">Папки</RadioButton>
 
             </StackPanel>
         </GroupBox>
 
-        <ListView x:Name="ListView" Margin="10,115,179,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown">
+        <ListView x:Name="ListView" Margin="10,115,179,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

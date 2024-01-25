@@ -71,16 +71,12 @@ namespace FileExplorer
             OffOnButtons(false);
         }
 
-        private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (ListView.SelectedItems.Count != 0)
-                OffOnButtons(true);
-        }
+     
 
 
         private void OffOnButtons(bool value)
         {
-            ButtonChoose.IsEnabled = value;
+            //ButtonChoose.IsEnabled = value;
             ButttonDelete.IsEnabled = value;
             ButtonRename.IsEnabled = value;
             ButtonRefresh.IsEnabled = value;
@@ -109,6 +105,18 @@ namespace FileExplorer
         {
             BaseModel Item = (BaseModel)ListView.SelectedItems[0];
             RenameItem(LabelPathText, Item, NewName);
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!(ListView is null || ListView.ItemsSource is null))
+                ButtonRefresh.IsEnabled = true;
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // if (ListView.SelectedItems.Count != 0)
+                OffOnButtons(true);
         }
     }
 }
